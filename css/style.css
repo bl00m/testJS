@@ -1,0 +1,15 @@
+#gameboard {
+    position: relative;
+    border: 3px solid black;
+    width: 80%;
+    height: 50em;
+    margin: 4em auto;
+    cursor: url('../img/cursor.png'), auto;
+}
+
+.pigeon {
+    position: absolute;
+    background-image: url('../img/pigeon.png');
+    width: 100px;
+    height: 92px;
+}
