@@ -9,9 +9,11 @@ function createPigeon() {
     document.getElementById('gameboard').appendChild(pigeon)
 
     pigeon.addEventListener("click", function() {
-        this.parentNode.removeChild(this);
-        createPigeon();
-
+        this.style.transform = 'translateY(40em) rotate(1080deg)';
+        var element = this;
+        setTimeout(function() {
+            element.parentNode.removeChild(element);
+        }, 1000);
     });
 }
 
@@ -31,7 +33,7 @@ function morePigeons() {
         createPigeon();
         morePigeons();
 
-    },10000);
+    },5000);
 
 }
 

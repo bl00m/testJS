@@ -4,7 +4,8 @@
     width: 80%;
     height: 50em;
     margin: 4em auto;
-    cursor: url('../img/cursor.png')22 22, auto;
+    cursor: url('../img/cursor.png') 22 22, auto;
+    overflow: hidden;
 }
 
 .pigeon {
