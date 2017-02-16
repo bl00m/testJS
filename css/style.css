@@ -18,12 +18,23 @@
     transition: 1s;
 }
 
+.deadpigeon {
+    position: absolute;
+    background-image: url('../img/pigeon.png');
+    width: 100px;
+    height: 92px;
+    top: 95% !important;
+    transform: rotate(1260deg);
+    transition: 1s;
+}
+
 span {
     display: block;
     margin-left: 10%;
     margin-top: 2em;
     font-size: 2em;
 }
+
 #score {
     color: red;
 }
