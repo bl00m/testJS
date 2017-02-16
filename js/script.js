@@ -26,5 +26,15 @@ function movePigeon() {
     }, 1000);
 }
 
+function morePigeons() {
+    setTimeout(function() {
+        createPigeon();
+        morePigeons();
+
+    },10000);
+
+}
+
 createPigeon();
 movePigeon();
+morePigeons();
