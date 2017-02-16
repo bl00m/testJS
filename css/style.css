@@ -3,9 +3,11 @@
     border: 3px solid black;
     width: 80%;
     height: 50em;
-    margin: 4em auto;
+    margin: 0 auto;
     cursor: url('../img/cursor.png') 30 30, auto;
     overflow: hidden;
+    background-image: url('../img/back.jpg');
+    background-size: cover;
 }
 
 .pigeon {
@@ -14,4 +16,14 @@
     width: 100px;
     height: 92px;
     transition: 1s;
+}
+
+span {
+    display: block;
+    margin-left: 10%;
+    margin-top: 2em;
+    font-size: 2em;
+}
+#score {
+    color: red;
 }
