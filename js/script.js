@@ -3,7 +3,7 @@ function createPigeon() {
     pigeon.className = 'pigeon';
     pigeon.style.top = Math.floor((Math.random()*87)+1) + '%';
     pigeon.style.left = Math.floor((Math.random()*92)+1) + '%';
-    document.getElementById('gameboard').appendChild(pigeon)
+    document.getElementsByTagName('main')[0].appendChild(pigeon)
 }
 
 function morePigeons() {
@@ -13,11 +13,11 @@ function morePigeons() {
             createPigeon();
             morePigeons();
 
-        }, 2000 - score/5);
-        
+        }, 2000 - score/10);
+
     } else {
         alert('Game Over');
-        document.getElementById('gameboard').innerHTML = '';
+        document.getElementsByTagName('main')[0].innerHTML = '';
         updateScore(0 - score);
         morePigeons();
     }
@@ -28,12 +28,31 @@ function updateScore(num) {
     document.getElementById('score').innerHTML = score;
 }
 
+function updateCombo(touche) {
+    if (!bazooka) {
+        if (comboCount > 4) {
+            document.getElementById('combo').innerHTML = 'Bazooka unlocked !';
+            comboCount = 0;
+            launchBazooka();
+        } else if (touche) {
+            comboCount++;
+            document.getElementById('combo').innerHTML = comboCount;
+        } else {
+            comboCount = 0;
+            document.getElementById('combo').innerHTML = comboCount;
+        }
+    }
+}
+
 function launchBazooka() {
     console.log('BAAAZOOOKA');
     bazooka = true;
-    comboCount = 0;
+    updateCombo(0);
+    document.getElementsByTagName('main')[0].id = 'cursorBazooka';
     setTimeout(function () {
         bazooka = false;
+        document.getElementsByTagName('main')[0].id = 'cursorStandart';
+        document.getElementById('combo').innerHTML = comboCount;
     }, 10000);
 }
 
@@ -41,7 +60,7 @@ var score = 0;
 var bazooka = false;
 var comboCount = 0;
 
-document.getElementById('gameboard').addEventListener('click', function(event) {
+document.getElementsByTagName('main')[0].addEventListener('click', function(event) {
     if (!bazooka) {
         var pigeons = document.getElementsByClassName('pigeon');
 
@@ -49,21 +68,17 @@ document.getElementById('gameboard').addEventListener('click', function(event) {
         for (var i=0; i<pigeons.length; i++) {
             pigeonPos = pigeons[i].getBoundingClientRect();
 
-            if (event.clientX > pigeonPos.left && event.clientX < pigeonPos.left + 100 && event.clientY > pigeonPos.top && event.clientY < pigeonPos.top + 92) {
+            if (event.clientX > pigeonPos.left && event.clientX < pigeonPos.left + 128 && event.clientY > pigeonPos.top && event.clientY < pigeonPos.top + 128) {
                 pigeons[i].className = 'deadpigeon';
-                updateScore(100);
-                if (comboCount > 4) {
-                    launchBazooka();
-                } else {
-                    comboCount++;
-                }
                 touche = true;
+                updateScore(100);
+                updateCombo(touche);
             }
         }
 
         if (!touche) {
             updateScore(-50);
-            comboCount = 0;
+            updateCombo(touche);
         }
 
     } else {

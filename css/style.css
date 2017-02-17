@@ -1,13 +1,30 @@
-#gameboard {
+body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 80%;
+    margin: auto;
+    margin-top: 2em;
+}
+
+
+main {
     position: relative;
     border: 3px solid black;
-    width: 80%;
+    width: 100%;
     height: 50em;
     margin: 0 auto;
-    cursor: url('../img/cursor.png') 30 30, auto;
     overflow: hidden;
     background-image: url('../img/back.jpg');
     background-size: cover;
+}
+
+#cursorStandart {
+    cursor: url('../img/cursor.png') 30 30, auto;
+}
+
+#cursorBazooka {
+    cursor: url('../img/cursor_bazooka.png') 64 64, auto;
 }
 
 .pigeon {
@@ -30,8 +47,6 @@
 
 span {
     display: block;
-    margin-left: 10%;
-    margin-top: 2em;
     font-size: 2em;
 }
 
