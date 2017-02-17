@@ -49,16 +49,18 @@ function launchBazooka() {
     bazooka = true;
     updateCombo(0);
     document.getElementsByTagName('main')[0].id = 'cursorBazooka';
-    setTimeout(function () {
-        bazooka = false;
-        document.getElementsByTagName('main')[0].id = 'cursorStandart';
-        document.getElementById('combo').innerHTML = comboCount;
-    }, 10000);
+    bazookaShot = 6;
+    // setTimeout(function () {
+    //     bazooka = false;
+    //     document.getElementsByTagName('main')[0].id = 'cursorStandart';
+    //     document.getElementById('combo').innerHTML = comboCount;
+    // }, 10000);
 }
 
 var score = 0;
 var bazooka = false;
 var comboCount = 0;
+var bazookaShot = 6;
 
 document.getElementsByTagName('main')[0].addEventListener('click', function(event) {
     if (!bazooka) {
@@ -75,7 +77,6 @@ document.getElementsByTagName('main')[0].addEventListener('click', function(even
                 updateCombo(touche);
             }
         }
-
         if (!touche) {
             updateScore(-50);
             updateCombo(touche);
@@ -93,6 +94,13 @@ document.getElementsByTagName('main')[0].addEventListener('click', function(even
                     updateScore(100);
                 }
             }
+        }
+
+        bazookaShot--;
+        if (bazookaShot < 1) {
+            bazooka = false;
+            document.getElementsByTagName('main')[0].id = 'cursorStandart';
+            document.getElementById('combo').innerHTML = comboCount;
         }
     }
 });
